@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\ambit\\source\\repos\\urban-ft-assignment\\UrbanFTProject.ToDoList.Data\\UrbanFTProject.ToDoList.Data.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\ambit\\source\\repos\\urban-ft-assignment\\UrbanFTProject.ToDoList.Data\\UrbanFTProject.ToDoList.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ambit\\source\\repos\\urban-ft-assignment\\UrbanFTProject.ToDoList.Data\\UrbanFTProject.ToDoList.Data.csproj",
+        "projectName": "UrbanFTProject.ToDoList.Data",
+        "projectPath": "C:\\Users\\ambit\\source\\repos\\urban-ft-assignment\\UrbanFTProject.ToDoList.Data\\UrbanFTProject.ToDoList.Data.csproj",
+        "packagesPath": "D:\\.nuget\\Packages",
+        "outputPath": "C:\\Users\\ambit\\source\\repos\\urban-ft-assignment\\UrbanFTProject.ToDoList.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ambit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

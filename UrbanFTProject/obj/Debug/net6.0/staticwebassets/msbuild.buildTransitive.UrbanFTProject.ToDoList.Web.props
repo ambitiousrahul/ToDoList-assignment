@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\UrbanFTProject.ToDoList.Web.props" />
+</Project>
