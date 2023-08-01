@@ -1,0 +1,21 @@
+#ignore bin folders
+
+/UrbanFTProject/bin
+/UrbanFTProject/obj
+
+/UrbanFTProject/bin/*
+/UrbanFTProject/obj/*
+
+/UrbanFTProject.ToDoList.Data/bin
+/UrbanFTProject.ToDoList.Data/obj
+
+
+/UrbanFTProject.ToDoList.Data/bin/*
+/UrbanFTProject.ToDoList.Data/obj/*
+
+/UrbanFTProject.ToDoList.Tests/bin
+/UrbanFTProject.ToDoList.Tests/obj
+
+/UrbanFTProject.ToDoList.Tests/bin/*
+/UrbanFTProject.ToDoList.Tests/obj/*
+
