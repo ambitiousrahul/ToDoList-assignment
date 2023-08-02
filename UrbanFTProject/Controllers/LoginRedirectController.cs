@@ -21,7 +21,7 @@ namespace UrbanFTProject.ToDoList.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Login(string token, string email, string returnUrl,string contentType="")
+        public async Task<IActionResult> Login(string token, string email, string? returnUrl,string? contentType)
         {
             var user = await _userManager.FindByEmailAsync(email);
             var isValid = await _userManager.VerifyUserTokenAsync(user, "Default", "passwordless-auth", token);

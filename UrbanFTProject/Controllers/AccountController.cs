@@ -7,7 +7,7 @@ using UrbanFTProject.ToDoList.Web.Models;
 
 namespace UrbanFTProject.ToDoList.Web.Controllers
 {
-    [Route("account")]
+    [Route("accounts")]
     [ServiceFilter(typeof(ValidateActionParametersAttribute))]
     public class AccountsController : Controller
     {
@@ -20,7 +20,7 @@ namespace UrbanFTProject.ToDoList.Web.Controllers
 
         [HttpGet]
         [Route("login")]
-        public IActionResult Login(string returnURL)
+        public IActionResult Login(string? returnURL)
         {
             return Ok(new 
             {
