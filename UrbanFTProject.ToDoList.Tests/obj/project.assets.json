@@ -6109,25 +6109,26 @@
     ]
   },
   "packageFolders": {
-    "D:\\.nuget\\Packages": {}
+    "C:\\Users\\ranja\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ambit\\source\\repos\\urban-ft-assignment\\UrbanFTProject.ToDoList.Tests\\UrbanFTProject.ToDoList.Tests.csproj",
+      "projectUniqueName": "C:\\Learning\\code\\ToDoList-assignment\\UrbanFTProject.ToDoList.Tests\\UrbanFTProject.ToDoList.Tests.csproj",
       "projectName": "UrbanFTProject.ToDoList.Tests",
-      "projectPath": "C:\\Users\\ambit\\source\\repos\\urban-ft-assignment\\UrbanFTProject.ToDoList.Tests\\UrbanFTProject.ToDoList.Tests.csproj",
-      "packagesPath": "D:\\.nuget\\Packages",
-      "outputPath": "C:\\Users\\ambit\\source\\repos\\urban-ft-assignment\\UrbanFTProject.ToDoList.Tests\\obj\\",
+      "projectPath": "C:\\Learning\\code\\ToDoList-assignment\\UrbanFTProject.ToDoList.Tests\\UrbanFTProject.ToDoList.Tests.csproj",
+      "packagesPath": "C:\\Users\\ranja\\.nuget\\packages\\",
+      "outputPath": "C:\\Learning\\code\\ToDoList-assignment\\UrbanFTProject.ToDoList.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ambit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ranja\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6183,7 +6184,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }

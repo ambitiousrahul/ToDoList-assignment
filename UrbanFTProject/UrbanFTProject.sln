@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrbanFTProject.ToDoList.Web", "UrbanFTProject.ToDoList.Web.csproj", "{F5786565-35D3-488A-9BBF-C633B389A74F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrbanFTProject.ToDoList.Web", "UrbanFTProject.ToDoList.Web.csproj", "{F5786565-35D3-488A-9BBF-C633B389A74F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrbanFTProject.ToDoList.Data", "..\UrbanFTProject.ToDoList.Data\UrbanFTProject.ToDoList.Data.csproj", "{E922A232-1688-4AD5-969F-2F995B672A72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrbanFTProject.ToDoList.Data", "..\UrbanFTProject.ToDoList.Data\UrbanFTProject.ToDoList.Data.csproj", "{E922A232-1688-4AD5-969F-2F995B672A72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrbanFTProject.ToDoList.Tests", "..\UrbanFTProject.ToDoList.Tests\UrbanFTProject.ToDoList.Tests.csproj", "{4738F3E0-4590-4097-B52F-76C7CDA76EAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrbanFTProject.ToDoList.Tests", "..\UrbanFTProject.ToDoList.Tests\UrbanFTProject.ToDoList.Tests.csproj", "{4738F3E0-4590-4097-B52F-76C7CDA76EAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

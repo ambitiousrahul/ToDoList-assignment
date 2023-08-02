@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Data;
-using UrbanFTProject.Data;
 using UrbanFTProject.Repository;
 
-namespace UrbanFTProject.ToDoList.Data
+namespace UrbanFTProject.ToDoList.Data.Repositories
 {
     internal class TodoTaskRepository : IRepository<TodoTask>
     {
@@ -24,10 +23,11 @@ namespace UrbanFTProject.ToDoList.Data
             return await _context.TodoTasks.FindAsync(id);
         }
 
-        public async Task AddAsync(TodoTask entity)
+        public async Task<TodoTask> AddAsync(TodoTask entity)
         {
             await _context.TodoTasks.AddAsync(entity);
             await _context.SaveChangesAsync();
+            return entity;
         }
 
         public async Task UpdateAsync(TodoTask entity)
@@ -38,16 +38,16 @@ namespace UrbanFTProject.ToDoList.Data
 
         public async Task<DataRowState> DeleteAsync(int entityId)
         {
-            var existingTask=await GetByIdAsync(entityId);            
-            if(existingTask!= null)
-            {             
+            var existingTask = await GetByIdAsync(entityId);
+            if (existingTask != null)
+            {
                 _context.TodoTasks.Remove(existingTask);
                 await _context.SaveChangesAsync();
 
                 return DataRowState.Deleted;
             }
 
-            return DataRowState.Unchanged;            
+            return DataRowState.Unchanged;
         }
     }
 }

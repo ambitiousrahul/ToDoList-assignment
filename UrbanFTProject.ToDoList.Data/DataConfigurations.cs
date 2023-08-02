@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using UrbanFTProject.Data;
 using UrbanFTProject.Repository;
+using UrbanFTProject.ToDoList.Data.Repositories;
 
 namespace UrbanFTProject.ToDoList.Data
 {
@@ -18,6 +20,10 @@ namespace UrbanFTProject.ToDoList.Data
                 services.AddDbContext<UrbanFTAssignmentDbContext>(options =>options.UseSqlServer(connectionString));
 
                 services.AddScoped<IRepository<TodoTask>, TodoTaskRepository>();
+
+                services.AddScoped<IRepository<AspNetUsers>, UserRepository>();
+
+                services.AddScoped<IUserRepository, UserRepository>();
 
         }
         

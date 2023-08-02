@@ -42,6 +42,16 @@ namespace UrbanFTProject.ToDoList.Web.Middlewares
                 };
 
             }
+            else if(ex is NotImplementedException)
+            {
+                context.Response.StatusCode = StatusCodes.Status501NotImplemented;
+
+                errorResponseObj = new ErrorViewModel
+                {
+                    ErrorCode = StatusCodes.Status501NotImplemented,
+                    Message = "the api is not implemented"
+                };
+            }
             else
             {
                 context.Response.StatusCode = StatusCodes.Status500InternalServerError;

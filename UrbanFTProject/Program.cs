@@ -3,10 +3,13 @@ using Microsoft.OpenApi.Models;
 using UrbanFTProject.Data;
 using UrbanFTProject.ToDoList.Data;
 using UrbanFTProject.ToDoList.Web.Middlewares;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
+
+builder.Services.AddSingleton(builder.Configuration);
 
 //to insure urls are always in lowercase.
 builder.Services.Configure<RouteOptions>(configureoptions =>
@@ -14,14 +17,41 @@ builder.Services.Configure<RouteOptions>(configureoptions =>
     configureoptions.LowercaseUrls = true;
 });
 
+builder.Services.Configure<FormOptions>(configureoptions =>
+{
+    configureoptions.ValueCountLimit = 5000;
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromHours(1);
+    options.SlidingExpiration = true;
+    options.LoginPath = new PathString("/accounts/login");
+    options.ReturnUrlParameter = "returnUrl";
+});
+
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDBServices(builder.Configuration);
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddJWTConfigurations(builder.Configuration);
+
+//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+//          .AddCookie(options =>
+//          {
+//              options.LoginPath = new PathString("/account/login");
+//              options.ReturnUrlParameter = "returnUrl";
+//          });
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
 
 
 //#region SwaggerService
@@ -30,7 +60,34 @@ builder.Services.AddSwaggerGen(options =>
 
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "ToDoList_api", Version = "1.0" });
     options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme."
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] {}
+                }
+            });
 });
+
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -69,11 +126,17 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
+
+// Map Web API routes
+app.MapControllers();
+
 
 app.Run();

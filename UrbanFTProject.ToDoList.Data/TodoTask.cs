@@ -30,6 +30,8 @@ namespace UrbanFTProject.ToDoList.Data
         
         [DefaultValue(TaskStatus.Pending)]
         public TaskStatus Status { get; init; } // "pending", "in progress", or "completed"
+        
+        public string? UserId { get; init; }
     }
 
     /// <summary>

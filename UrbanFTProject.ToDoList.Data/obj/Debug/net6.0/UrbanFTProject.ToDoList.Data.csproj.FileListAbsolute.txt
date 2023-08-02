@@ -22,3 +22,15 @@ C:\Users\ambit\source\repos\urban-ft-assignment\UrbanFTProject.ToDoList.Data\obj
 C:\Users\ambit\source\repos\urban-ft-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\refint\UrbanFTProject.ToDoList.Data.dll
 C:\Users\ambit\source\repos\urban-ft-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\UrbanFTProject.ToDoList.Data.pdb
 C:\Users\ambit\source\repos\urban-ft-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\ref\UrbanFTProject.ToDoList.Data.dll
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\bin\Debug\net6.0\UrbanFTProject.ToDoList.Data.deps.json
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\bin\Debug\net6.0\UrbanFTProject.ToDoList.Data.dll
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\bin\Debug\net6.0\UrbanFTProject.ToDoList.Data.pdb
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\UrbanFTProject.ToDoList.Data.csproj.AssemblyReference.cache
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\UrbanFTProject.ToDoList.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\UrbanFTProject.ToDoList.Data.AssemblyInfoInputs.cache
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\UrbanFTProject.ToDoList.Data.AssemblyInfo.cs
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\UrbanFTProject.ToDoList.Data.csproj.CoreCompileInputs.cache
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\UrbanFTProject.ToDoList.Data.dll
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\refint\UrbanFTProject.ToDoList.Data.dll
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\UrbanFTProject.ToDoList.Data.pdb
+C:\Learning\code\ToDoList-assignment\UrbanFTProject.ToDoList.Data\obj\Debug\net6.0\ref\UrbanFTProject.ToDoList.Data.dll
