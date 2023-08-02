@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
 namespace UrbanFTProject.Models
@@ -6,8 +7,9 @@ namespace UrbanFTProject.Models
     {
         public int ErrorCode { get; set; }
 
-        public string Message { get; set; } = default!;        
+        public string Message { get; set; } = default!;
 
+        [NotMapped]
         public bool ShowError => ErrorCode!=0 & string.IsNullOrEmpty(Message);
 
         public override string ToString()

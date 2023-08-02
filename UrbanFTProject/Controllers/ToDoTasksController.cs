@@ -15,7 +15,7 @@ namespace UrbanFTProject.ToDoList.Web.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    //[ServiceFilter(typeof(LoginUrlAuthorizationFilter))]
+    [ServiceFilter(typeof(ValidateActionParametersAttribute))]
     public class ToDoTasksController : Controller
     {
         private readonly IRepository<TodoTask> _taskRepository;

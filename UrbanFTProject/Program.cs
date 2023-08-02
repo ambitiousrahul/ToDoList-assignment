@@ -4,12 +4,13 @@ using UrbanFTProject.Data;
 using UrbanFTProject.ToDoList.Data;
 using UrbanFTProject.ToDoList.Web.Middlewares;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton(builder.Configuration);
+
+builder.Services.AddScoped<ValidateActionParametersAttribute>();
 
 //to insure urls are always in lowercase.
 builder.Services.Configure<RouteOptions>(configureoptions =>

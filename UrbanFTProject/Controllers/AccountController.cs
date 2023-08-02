@@ -2,11 +2,13 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using UrbanFTProject.ToDoList.Web.Middlewares;
 using UrbanFTProject.ToDoList.Web.Models;
 
 namespace UrbanFTProject.ToDoList.Web.Controllers
 {
     [Route("account")]
+    [ServiceFilter(typeof(ValidateActionParametersAttribute))]
     public class AccountsController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
