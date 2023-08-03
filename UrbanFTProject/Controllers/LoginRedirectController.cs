@@ -9,7 +9,9 @@ using UrbanFTProject.ToDoList.Web.Models;
 
 namespace UrbanFTProject.ToDoList.Web.Controllers
 {
-    public class LoginRedirectController : Controller
+    [ApiController]
+    [Route("loginredirect")]
+    public class LoginRedirectController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _iconfiguration;

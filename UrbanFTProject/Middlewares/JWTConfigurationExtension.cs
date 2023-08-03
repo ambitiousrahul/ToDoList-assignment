@@ -8,7 +8,9 @@ namespace UrbanFTProject.ToDoList.Web.Middlewares
     {
         public static void AddJWTConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddAuthentication()//JwtBearerDefaults.AuthenticationScheme)//x =>
+            services
+                .AddAuthorization()
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//x =>
             //{
             //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;

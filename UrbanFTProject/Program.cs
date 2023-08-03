@@ -4,18 +4,25 @@ using UrbanFTProject.Data;
 using UrbanFTProject.ToDoList.Data;
 using UrbanFTProject.ToDoList.Web.Middlewares;
 using Microsoft.AspNetCore.Http.Features;
-
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton(builder.Configuration);
 
 builder.Services.AddScoped<ValidateActionParametersAttribute>();
+//builder.Services.AddScoped<CustomUnAuthorizedFilter>();
 
 //to insure urls are always in lowercase.
 builder.Services.Configure<RouteOptions>(configureoptions =>
 {
     configureoptions.LowercaseUrls = true;
+    configureoptions.LowercaseQueryStrings = true;    
+});
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
 });
 
 builder.Services.Configure<FormOptions>(configureoptions =>
@@ -96,6 +103,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+    app.UseGlobalHandlerException();
 }
 else
 {
@@ -106,6 +114,9 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+// a middleware to modify the response of any UnAuthorized Responses
+app.UseCustomUnauthorizedMiddleware();
 
 // Enable middleware to serve generated Swagger as a JSON endpoint.
 app.UseSwagger();
@@ -134,9 +145,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapControllerRoute(
-    name: "api",
-    pattern: "api/{controller=Accounts}/{action=Login}");
+//app.MapControllerRoute(
+//    name: "api",
+//    pattern: "api/{controller=Accounts}/{action=Login}");
 
 app.MapRazorPages();
 

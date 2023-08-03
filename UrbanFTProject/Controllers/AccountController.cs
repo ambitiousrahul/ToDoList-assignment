@@ -1,5 +1,7 @@
 ﻿
 
+using System.Net.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UrbanFTProject.ToDoList.Web.Middlewares;
@@ -7,36 +9,18 @@ using UrbanFTProject.ToDoList.Web.Models;
 
 namespace UrbanFTProject.ToDoList.Web.Controllers
 {
-    [Route("accounts")]
+    [Route("account")]
+    [ApiController]
     [ServiceFilter(typeof(ValidateActionParametersAttribute))]
-    public class AccountsController : Controller
+    public class AccountController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
 
-        public AccountsController(UserManager<IdentityUser> userManager)
+        public AccountController(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
         }
-
-        [HttpGet]
-        [Route("login")]
-        public IActionResult Login(string? returnURL)
-        {
-            return Ok(new 
-            {
-                Message = "Unrecognized user. You must sign in to use this weather service.",
-                LoginUrl = Url.ActionLink(action: "", controller: "Account", values:
-                new
-                {
-                    ReturnURL = returnURL
-                },
-                protocol: Request.Scheme),                
-                Schema = "{ \n userName * string \n  email * string($email) \n }",
-                ContentType="application/json"
-            });
-
-            
-        }
+      
 
         [HttpPost]
         [Route("login")]
@@ -46,22 +30,39 @@ namespace UrbanFTProject.ToDoList.Web.Controllers
             var returnUrl = HttpContext?.Request.Query.FirstOrDefault(r => r.Key == "returnUrl");
 
             if (user is null)
-            {                
-                var baseUri = new Uri(HttpContext?.Request.PathBase);
-                string registrationUrl = new Uri(baseUri, "/identity/account/register").ToString();
+            { 
 
-                return Unauthorized($"Email is not registered. To create new user go to {registrationUrl}");
+                // Replace the response with a new response containing the object you want to return               
+                string registrationUrl = $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host.Value}/identity/account/register";
+
+                var unRegisteredUserResponse = new
+                {
+                    Message = "Unrecognized user. You will have to register to our application to use its api endpoints",
+                    browserUrl = registrationUrl,
+                    HttpContext?.Request.Method,
+                    ContentType = "url"
+                };
+                return Unauthorized(unRegisteredUserResponse);
             }
             else
             {
                 var token = _userManager.GenerateUserTokenAsync(user, "Default", "passwordless-auth");
-                var url = Url.ActionLink(action: "", controller: "LoginRedirect", values: new
+                
+                var url = Url.ActionLink(action: "login", controller: "LoginRedirect", values: new
                 {
                     Token = token.Result,
-                    Email = model.Email,
+                    model.Email,
                     ReturnUrl = returnUrl?.Value
                 }, protocol: Request.Scheme);
-                return Ok(url);
+
+                var authenticatedUserResponse = new
+                {
+                    Message = "Login Successfull. Request below endpoint to get authorisation token",
+                    browserUrl = url,
+                    HttpContext?.Request.Method,
+                    ContentType = "application/json"
+                };
+                return Ok(authenticatedUserResponse);
             }
         }
     }

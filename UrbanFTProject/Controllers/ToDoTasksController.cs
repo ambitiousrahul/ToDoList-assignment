@@ -16,7 +16,8 @@ namespace UrbanFTProject.ToDoList.Web.Controllers
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ServiceFilter(typeof(ValidateActionParametersAttribute))]
-    public class ToDoTasksController : Controller
+    //[ServiceFilter(typeof(CustomUnAuthorizedFilter))]
+    public class ToDoTasksController : ControllerBase
     {
         private readonly IRepository<TodoTask> _taskRepository;
         private readonly IUserRepository _userRepository;
@@ -44,8 +45,8 @@ namespace UrbanFTProject.ToDoList.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        //[ServiceFilter(typeof(LoginUrlAuthorizationFilter))]
+        //[Authorize]
+        //[AllowAnonymous]
         public async Task<ActionResult<TodoTask>> AddTask([FromBody]ToDoTaskViewModel task)
         {
             string? userId = null;

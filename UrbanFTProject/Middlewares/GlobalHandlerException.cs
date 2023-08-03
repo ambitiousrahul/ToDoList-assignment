@@ -42,6 +42,16 @@ namespace UrbanFTProject.ToDoList.Web.Middlewares
                 };
 
             }
+            else if (ex is UnauthorizedAccessException)
+            {
+                context.Response.StatusCode = StatusCodes.Status409Conflict;
+
+                errorResponseObj = new ErrorViewModel
+                {
+                    ErrorCode = StatusCodes.Status401Unauthorized,
+                    Message = "UnAuthorized"
+                };
+            }
             else if(ex is NotImplementedException)
             {
                 context.Response.StatusCode = StatusCodes.Status501NotImplemented;
