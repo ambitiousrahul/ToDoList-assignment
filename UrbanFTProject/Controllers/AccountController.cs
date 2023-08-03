@@ -58,8 +58,8 @@ namespace UrbanFTProject.ToDoList.Web.Controllers
                 var authenticatedUserResponse = new
                 {
                     Message = "Login Successfull. Request below endpoint to get authorisation token",
-                    browserUrl = url,
-                    HttpContext?.Request.Method,
+                    EndpointUrl = url,
+                    Method="GET",
                     ContentType = "application/json"
                 };
                 return Ok(authenticatedUserResponse);

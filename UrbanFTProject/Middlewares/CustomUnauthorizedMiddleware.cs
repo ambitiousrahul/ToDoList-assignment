@@ -24,18 +24,21 @@ namespace UrbanFTProject.ToDoList.Web.Middlewares
                 // Replace the response with a new response containing the object you want to return               
                 string loginUrl = $"{httpContext.Request.Scheme}://{httpContext.Request.Host.Value}/Account/Login";
 
-                httpContext.Response.ContentType = "application/json";
-                await httpContext.Response.WriteAsJsonAsync(new
+                if (!httpContext.Response.HasStarted)
                 {
-                    Message = "Unrecognized user. You must sign in to use this endpoint",
-                    LoginUrl = loginUrl,
-                    httpContext.Request.Method,
-                    Schema = new
+                    httpContext.Response.ContentType = "application/json";
+                    await httpContext.Response.WriteAsJsonAsync(new
                     {
-                        email = "${registeredEmail}"
-                    },
-                    ContentType = "application/json"
-                });
+                        Message = "Unrecognized user. You must sign in to use this endpoint",
+                        LoginUrl = loginUrl,
+                        httpContext.Request.Method,
+                        Schema = new
+                        {
+                            email = "${registeredEmail}"
+                        },
+                        ContentType = "application/json"
+                    });
+                }
             }
         }
 
