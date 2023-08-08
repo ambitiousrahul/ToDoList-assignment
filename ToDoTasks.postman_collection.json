@@ -1,0 +1,611 @@
+{
+	"info": {
+		"_postman_id": "75de800c-1bee-4644-89de-5332b6153c06",
+		"name": "ToDoTasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11964845"
+	},
+	"item": [
+		{
+			"name": "Account/Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"ambitiousrahul.r@outlook.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7078/Account/Login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7078",
+					"path": [
+						"Account",
+						"Login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successful JWT Token Creation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ambitiousrahul.r@outlook.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7078/Account/Login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7078",
+							"path": [
+								"Account",
+								"Login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Aug 2023 18:21:13 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache,no-store"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": ".AspNetCore.Identity.Application=CfDJ8H7RGheSt81NmS1Gn7cENwmb4YHtW-f6XAjw_JNh19OndqKDQMDuG2-sf8IiHgsJtrgxIECyFAbvGW3X_Ihy5uGftUpG9RjR4yJccsekGIlH6vh0D1W40YxgxzeUVDl-xBYwvvzeQtjj60RGhmwjcU-_OhzYuC71eUeYUYDFR-pdoZbqVw0KrWC0_liASD8epQ_LG4HPBy2Rii4VIpwJ58YzKno8SZy5yyr4emVbTKned5YanXy1OZ8sqZo1U400LZPN8UDwWiRDx_cQ26o34wrZ-_JcAf5Hh9cpZNyeVqBfnx33kVapESeHvt95e66wii-LOvinjYwblFkqfRVS7cGiiwxEUx7InGHLsfg7534l2ciu09NOP1cmbd9IgxfOJg; path=/; secure; samesite=lax; httponly"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtYml0aW91c3JhaHVsLnJAb3V0bG9vay5jb20iLCJuYmYiOjE2OTE1MTg4NzQsImV4cCI6MTY5MTUyMDY3NCwiaWF0IjoxNjkxNTE4ODc0fQ.BYqL9cOXQwqFndK9iJctlK82VqLTvBHW77yEaZ0jjxM\",\n    \"refreshToken\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "todotask",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"my third task\",\r\n  \"description\": \"this is the third task description\",\r\n  \"status\": 2,\r\n  \"taskAssignee\": \"ambitiousrahul.r@outlook.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server-url}}/api/todotasks/3",
+					"host": [
+						"{{server-url}}"
+					],
+					"path": [
+						"api",
+						"todotasks",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "unauthorzed response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"my first task\",\r\n  \"description\": \"this is the task description\",\r\n  \"status\": 0,\r\n  \"taskAssignee\": \"ambitiousrahul.r@outlook.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server-url}}/api/todotasks",
+							"host": [
+								"{{server-url}}"
+							],
+							"path": [
+								"api",
+								"todotasks"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 03 Aug 2023 12:41:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "Bearer"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unrecognized user. You must sign in to use this endpoint\",\n    \"loginUrl\": \"https://localhost:7078/Account/Login\",\n    \"method\": \"POST\",\n    \"schema\": {\n        \"email\": \"${registeredEmail}\"\n    },\n    \"contentType\": \"application/json\"\n}"
+				},
+				{
+					"name": "todotask",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"my third task\",\r\n  \"description\": \"this is the third task description\",\r\n  \"status\": 2,\r\n  \"taskAssignee\": \"ambitiousrahul.r@outlook.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server-url}}/api/todotasks/3",
+							"host": [
+								"{{server-url}}"
+							],
+							"path": [
+								"api",
+								"todotasks",
+								"3"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 08 Aug 2023 18:21:37 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "todotask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"my second task\",\r\n  \"description\": \"this is the second task description\",\r\n  \"status\": 0,\r\n  \"taskAssignee\": \"ambitiousrahul.r@outlook.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server-url}}/api/todotasks",
+					"host": [
+						"{{server-url}}"
+					],
+					"path": [
+						"api",
+						"todotasks"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "unauthorzed response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"my first task\",\r\n  \"description\": \"this is the task description\",\r\n  \"status\": 0,\r\n  \"taskAssignee\": \"ambitiousrahul.r@outlook.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server-url}}/api/todotasks",
+							"host": [
+								"{{server-url}}"
+							],
+							"path": [
+								"api",
+								"todotasks"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 03 Aug 2023 12:41:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "Bearer"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unrecognized user. You must sign in to use this endpoint\",\n    \"loginUrl\": \"https://localhost:7078/Account/Login\",\n    \"method\": \"POST\",\n    \"schema\": {\n        \"email\": \"${registeredEmail}\"\n    },\n    \"contentType\": \"application/json\"\n}"
+				},
+				{
+					"name": "sucessful task creation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"my second task\",\r\n  \"description\": \"this is the second task description\",\r\n  \"status\": 0,\r\n  \"taskAssignee\": \"ambitiousrahul.r@outlook.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server-url}}/api/todotasks",
+							"host": [
+								"{{server-url}}"
+							],
+							"path": [
+								"api",
+								"todotasks"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Aug 2023 07:05:01 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Location",
+							"value": "https://localhost:7078/api/todotasks/2"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"title\": \"my second task\",\n    \"description\": \"this is the second task description\",\n    \"status\": 0,\n    \"userId\": \"727b8b30-cc4a-4026-a302-c786b904a647\"\n}"
+				}
+			]
+		},
+		{
+			"name": "todotasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server-url}}/api/todotasks/",
+					"host": [
+						"{{server-url}}"
+					],
+					"path": [
+						"api",
+						"todotasks",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get tasks",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}/api/todotasks/",
+							"host": [
+								"{{server-url}}"
+							],
+							"path": [
+								"api",
+								"todotasks",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Aug 2023 18:11:59 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache,no-store"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": ".AspNetCore.Identity.Application=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; secure; samesite=lax; httponly"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "Identity.External=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; secure; samesite=lax; httponly"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "Identity.TwoFactorUserId=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; secure; samesite=lax; httponly"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"my first task\",\n        \"description\": \"this is the task description\",\n        \"status\": 0,\n        \"userId\": \"727b8b30-cc4a-4026-a302-c786b904a647\"\n    },\n    {\n        \"id\": 2,\n        \"title\": \"my second task\",\n        \"description\": \"this is the second task description\",\n        \"status\": 0,\n        \"userId\": \"727b8b30-cc4a-4026-a302-c786b904a647\"\n    },\n    {\n        \"id\": 3,\n        \"title\": \"my third task\",\n        \"description\": \"this is the third task description\",\n        \"status\": 1,\n        \"userId\": \"727b8b30-cc4a-4026-a302-c786b904a647\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "todotasks/2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server-url}}/api/todotasks/2",
+					"host": [
+						"{{server-url}}"
+					],
+					"path": [
+						"api",
+						"todotasks",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "todotasks/2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}/api/todotasks/2",
+							"host": [
+								"{{server-url}}"
+							],
+							"path": [
+								"api",
+								"todotasks",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Aug 2023 18:24:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"title\": \"my second task\",\n    \"description\": \"this is the second task description\",\n    \"status\": 0,\n    \"userId\": \"727b8b30-cc4a-4026-a302-c786b904a647\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delete task/2",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server-url}}/api/todotasks/2",
+					"host": [
+						"{{server-url}}"
+					],
+					"path": [
+						"api",
+						"todotasks",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete/2",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server-url}}/api/todotasks/2",
+							"host": [
+								"{{server-url}}"
+							],
+							"path": [
+								"api",
+								"todotasks",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Aug 2023 18:26:49 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtYml0aW91c3JhaHVsLnJAb3V0bG9vay5jb20iLCJuYmYiOjE2OTE1MTg4NzQsImV4cCI6MTY5MTUyMDY3NCwiaWF0IjoxNjkxNTE4ODc0fQ.BYqL9cOXQwqFndK9iJctlK82VqLTvBHW77yEaZ0jjxM",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server-url",
+			"value": "https://localhost:7078"
+		}
+	]
+}
