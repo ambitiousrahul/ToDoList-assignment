@@ -4,6 +4,7 @@
 
 
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -96,18 +97,8 @@ namespace UrbanFTProject.ToDoList.Web.Areas.Identity.Pages.Account
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            ReturnUrl = returnUrl;
-
-            var url = Url.ActionLink(action: "Login", controller: "Account", values: new
-            {
-                returnURL = returnUrl
-            }, protocol: Request.Scheme);
-
-            if (returnUrl.Contains("/api/"))
-            {
-                Redirect(url);
-            }
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ReturnUrl = returnUrl;            
             
         }
 
@@ -126,20 +117,25 @@ namespace UrbanFTProject.ToDoList.Web.Areas.Identity.Pages.Account
 
                 var result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, false);
 
-
-                var token = _userManager.GenerateUserTokenAsync(user, "Default", "passwordless-auth");
-                var url = Url.ActionLink(action: "Login", controller: "LoginRedirect", values: new
-                {
-                    Token = token.Result,
-                    Email = Input.Email,
-                    ReturnUrl = returnUrl
-                }, protocol: Request.Scheme);
-
-
                 if (result.Succeeded)
                 {
                     _logger.LogInformation($"User: {user.UserName} logged in.");
-                    return Redirect(url);
+
+                    await _userManager.UpdateSecurityStampAsync(user);
+
+                    await HttpContext.SignInAsync(
+                   IdentityConstants.ApplicationScheme,
+                   new ClaimsPrincipal(
+                       new ClaimsIdentity(
+                           new List<Claim>
+                           {
+                        new Claim("sub", user.Id)
+                           },
+                           IdentityConstants.ApplicationScheme
+                       )
+                  ));
+
+                    return LocalRedirect(returnUrl);
                 }
                 else
                 {
@@ -152,21 +148,7 @@ namespace UrbanFTProject.ToDoList.Web.Areas.Identity.Pages.Account
                         ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     }
                     return Unauthorized();
-                }
-                //if (user != null)
-                //{
-                //    var token = _userManager.GenerateUserTokenAsync(user, "Default", "passwordless-auth");
-                //    var url = Url.ActionLink(action: "Login", controller: "LoginRedirect", values: new
-                //    {
-                //        Token = token.Result,
-                //        Email = Input.Email,
-                //        ReturnUrl = returnUrl
-                //    }, protocol: Request.Scheme);
-
-                //    return Redirect(url);
-                //    //return Ok(url);
-                //}
-                //return Unauthorized();
+                }               
 
             }
             return Page();

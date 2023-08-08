@@ -8,14 +8,9 @@ namespace UrbanFTProject.ToDoList.Web.Middlewares
     {
         public static void AddJWTConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
-            services
-                .AddAuthorization()
-                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//x =>
-            //{
-            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //})
-            .AddJwtBearer(o =>
+            services                
+                .AddAuthentication()
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, o =>
             {
                 var Key = Encoding.UTF8.GetBytes(configuration["JWT:SigningKey"]);
                 o.SaveToken = true;
@@ -27,7 +22,19 @@ namespace UrbanFTProject.ToDoList.Web.Middlewares
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = configuration["JWT:Issuer"],
                     ValidAudience = configuration["JWT:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Key)
+                    IssuerSigningKey = new SymmetricSecurityKey(Key)                    
+                };
+
+                o.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+                        {
+                            context.Response.Headers.Add("Token-Expired", "true");
+                        }
+                        return Task.CompletedTask;
+                    }
                 };
             });
         }

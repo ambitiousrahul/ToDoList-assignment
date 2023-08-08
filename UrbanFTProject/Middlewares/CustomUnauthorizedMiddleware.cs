@@ -21,23 +21,33 @@ namespace UrbanFTProject.ToDoList.Web.Middlewares
             // Check if the response is an Unauthorized response
             if (httpContext.Response.StatusCode == StatusCodes.Status401Unauthorized)
             {
-                // Replace the response with a new response containing the object you want to return               
-                string loginUrl = $"{httpContext.Request.Scheme}://{httpContext.Request.Host.Value}/Account/Login";
-
-                if (!httpContext.Response.HasStarted)
+                if (Convert.ToBoolean(httpContext?.Request?.Path.Value?.StartsWith("/api")))
                 {
-                    httpContext.Response.ContentType = "application/json";
-                    await httpContext.Response.WriteAsJsonAsync(new
+                    // Replace the response with a new response containing the object you want to return               
+                    string loginUrl = $"{httpContext?.Request.Scheme}://{httpContext?.Request.Host.Value}/Account/Login";
+#nullable disable
+                    if (!httpContext.Response.HasStarted)
                     {
-                        Message = "Unrecognized user. You must sign in to use this endpoint",
-                        LoginUrl = loginUrl,
-                        httpContext.Request.Method,
-                        Schema = new
+                        httpContext.Response.ContentType = "application/json";
+                        await httpContext.Response.WriteAsJsonAsync(new
                         {
-                            email = "${registeredEmail}"
-                        },
-                        ContentType = "application/json"
-                    });
+                            Message = "Unrecognized user. You must sign in to use this endpoint",
+                            LoginUrl = loginUrl,
+                            httpContext.Request.Method,
+                            Schema = new
+                            {
+                                email = "${registeredEmail}"
+                            },
+                            ContentType = "application/json"
+                        });
+                    }
+                }
+                else
+                {
+                    if (!httpContext.Response.HasStarted)
+                    {
+                        httpContext.Response.Redirect($"{httpContext?.Request.Scheme}://{httpContext?.Request.Host.Value}/Identity/Account/Login?returnUrl={httpContext?.Request.Path.Value}");
+                    }
                 }
             }
         }

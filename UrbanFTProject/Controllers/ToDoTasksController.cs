@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using UrbanFTProject.Repository;
@@ -11,13 +10,12 @@ using UrbanFTProject.ToDoList.Web.Models;
 
 namespace UrbanFTProject.ToDoList.Web.Controllers
 {
-    // Controllers/TasksController.cs in TodoListApp.Web
+    
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [ServiceFilter(typeof(ValidateActionParametersAttribute))]
-    //[ServiceFilter(typeof(CustomUnAuthorizedFilter))]
-    public class ToDoTasksController : ControllerBase
+    [ServiceFilter(typeof(ValidateActionParametersAttribute))]    
+    public class ToDoTasksController : Controller
     {
         private readonly IRepository<TodoTask> _taskRepository;
         private readonly IUserRepository _userRepository;
@@ -45,8 +43,7 @@ namespace UrbanFTProject.ToDoList.Web.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
-        //[AllowAnonymous]
+        [Authorize]        
         public async Task<ActionResult<TodoTask>> AddTask([FromBody]ToDoTaskViewModel task)
         {
             string? userId = null;
@@ -73,9 +70,15 @@ namespace UrbanFTProject.ToDoList.Web.Controllers
         [Authorize]
         public async Task<IActionResult> UpdateTask(int id, [FromBody]TodoTask task)
         {
+            if (id == 0)
+            {
+                return BadRequest("Need to pass an ID for task");
+            }
             if (id != task.Id)
             {
-                return BadRequest();
+                task.Id = id;
+                var userDetails = await _userRepository.GetUserByEmail(User.Claims.ToArray()[0].Value);
+                task.UserId = userDetails?.Id;
             }
             await _taskRepository.UpdateAsync(task);                
           

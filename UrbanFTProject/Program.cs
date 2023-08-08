@@ -30,13 +30,6 @@ builder.Services.Configure<FormOptions>(configureoptions =>
     configureoptions.ValueCountLimit = 5000;
 });
 
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    options.ExpireTimeSpan = TimeSpan.FromHours(1);
-    options.SlidingExpiration = true;
-    options.LoginPath = new PathString("/accounts/login");
-    options.ReturnUrlParameter = "returnUrl";
-});
 
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -47,13 +40,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddJWTConfigurations(builder.Configuration);
-
-//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-//          .AddCookie(options =>
-//          {
-//              options.LoginPath = new PathString("/account/login");
-//              options.ReturnUrlParameter = "returnUrl";
-//          });
 
 builder.Services.AddControllersWithViews();
 
@@ -145,6 +131,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+/*Not Needed*/
 //app.MapControllerRoute(
 //    name: "api",
 //    pattern: "api/{controller=Accounts}/{action=Login}");

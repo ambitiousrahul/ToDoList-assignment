@@ -19,9 +19,12 @@
 /UrbanFTProject.ToDoList.Tests/bin/*
 /UrbanFTProject.ToDoList.Tests/obj/*
 
-/UrbanFTProject/.vs/
+/UrbanFTProject/.vs/*
 /UrbanFTProject/.vs/UrbanFTProject/FileContentIndex
 /UrbanFTProject/.vs/UrbanFTProject/DesignTimeBuild/.dtbcache.v2
-/UrbanFTProject/.vs/UrbanFTProject/FileContentIndex/
+/UrbanFTProject/.vs/UrbanFTProject/FileContentIndex/*
 /UrbanFTProject/.vs/UrbanFTProject/DesignTimeBuild/.dtbcache.v2
 /UrbanFTProject/.vs/UrbanFTProject/v17/.suo
+/UrbanFTProject/.vs/ProjectEvaluation/*
+/UrbanFTProject/.vs/ProjectEvaluation/urbanftproject.metadata.v7.bin
+/UrbanFTProject/.vs/ProjectEvaluation/urbanftproject.projects.v7.bin
